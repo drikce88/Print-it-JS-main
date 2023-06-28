@@ -19,6 +19,9 @@ const slides = [
 ];
 const left = document.querySelector('.arrow_left');
 const right = document.querySelector('.arrow_right');
+const dotsContainer = document.querySelector('.dots-container');
+dotsContainer.innerHTML = '';
+
 let currentSlide = 0;
 
 right.addEventListener('click', goToNextSlide);
@@ -40,6 +43,16 @@ function updateSlide() {
   });
 }
 
+slides.forEach((_, index) => {
+  const dot = document.createElement('li');
+  dot.classList.add('dot');
+  if (index === currentSlide) {
+    dot.classList.add('dot_selected');
+  }
+  dotsContainer.appendChild(dot);
+});
+
+
 function goToNextSlide() {
   currentSlide++;
   if (currentSlide >= slides.length) {
@@ -57,3 +70,5 @@ function goToPreviousSlide() {
 }
 
 updateSlide();
+
+
